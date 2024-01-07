@@ -16,6 +16,7 @@
   "dependencies": {
     "@elysiajs/html": "^0.8.0",
     "@elysiajs/static": "^0.8.1",
+    "all": "^0.0.0",
     "elysia": "^0.8.8",
     "typed-html": "^3.0.1"
   }

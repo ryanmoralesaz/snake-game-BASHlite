@@ -1,3 +1,7 @@
+# alpine-branch of Snake Game
+very frustrating
+can't seem to hold on to the data in the alpine data
+
 # snake-site_bathq
 Built with Bun, Elysia, Alpine, Typescript, HTMX, and SQLite.
 

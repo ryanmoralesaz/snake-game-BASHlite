@@ -1,17 +1,16 @@
-import Snake from "./snake.ts";
-import Food from "./food.ts";
+import Snake from './snake.ts';
+import Food from './food.ts';
 
 class GameBoard {
-  private ctx: CanvasRenderingContext2D;
+  private ctx: any;
   private snake: Snake;
   private food: Food;
-  private gameInterval: number | undefined;
-  private lastRenderTime: number;
-  private score: number = 0;
+  private lastRenderTime: number = 0;
+  public score: number = 0;
   private animationFrameId: number | null = null;
   private readonly canvasWidth: number;
   private readonly canvasHeight: number;
-  private readonly snakeSpeed: number;
+  private readonly snakeSpeed: number = 5;
 
   constructor(
     ctx: CanvasRenderingContext2D,
@@ -23,8 +22,6 @@ class GameBoard {
     this.canvasHeight = canvasHeight;
     this.snake = new Snake();
     this.food = new Food(canvasWidth, canvasHeight, this.snake.size);
-    this.lastRenderTime = 0;
-    this.snakeSpeed = 5;
     this.handleKeydown();
   }
 
@@ -54,6 +51,7 @@ class GameBoard {
       );
       this.snake.grow();
       this.score += 1;
+      console.log('gameboard', this.score);
     }
 
     // check for snake collision with wall or tail
@@ -90,8 +88,10 @@ class GameBoard {
       window.cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
     }
-    window.alert("You lose");
-    this.restartGame();
+
+    if (window.runSnakeGame) {
+      window.runSnakeGame.endGame();
+    }
   }
   restartGame() {
     this.snake = new Snake();
@@ -108,19 +108,19 @@ class GameBoard {
   }
 
   private handleKeydown() {
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener('keydown', (event) => {
       switch (event.key) {
-        case "ArrowUp":
-          this.snake.setDirection("up");
+        case 'ArrowUp':
+          this.snake.setDirection('up');
           break;
-        case "ArrowDown":
-          this.snake.setDirection("down");
+        case 'ArrowDown':
+          this.snake.setDirection('down');
           break;
-        case "ArrowRight":
-          this.snake.setDirection("right");
+        case 'ArrowRight':
+          this.snake.setDirection('right');
           break;
-        case "ArrowLeft":
-          this.snake.setDirection("left");
+        case 'ArrowLeft':
+          this.snake.setDirection('left');
           break;
       }
     });
